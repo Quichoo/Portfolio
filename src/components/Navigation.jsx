@@ -149,7 +149,7 @@ export default function Navigation() {
           }}
         >
           <a
-            href="#"
+            href="#https://github.com/Quichoo"
             target="_blank"
             rel="noopener noreferrer"
             className="w-8 h-8 rounded-lg flex items-center justify-center transition-colors"
@@ -162,7 +162,7 @@ export default function Navigation() {
           </a>
 
           <a
-            href="#"
+            href="#https://www.linkedin.com/in/quian/"
             target="_blank"
             rel="noopener noreferrer"
             className="w-8 h-8 rounded-lg flex items-center justify-center transition-colors"
