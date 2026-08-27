@@ -1,0 +1,87 @@
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import GlassCard from "../components/GlassCard";
+import ProjectCard from "../components/ProjectCard";
+
+gsap.registerPlugin(ScrollTrigger);
+
+const PROJECTS = [
+  {
+    title: "Pickle Cave",
+    description:
+      "A full-stack booking system for an indoor pickleball venue — live availability, contiguity-checked reservations, real-time admin notifications, and a full admin panel, deployed and running for an actual business.",
+    tags: ["next.js", "typescript", "supabase", "mui"],
+    sourceUrl: "https://github.com/Quichoo/pickle-cave",
+    demoUrl: "https://pickle-cave-blush.vercel.app/",
+    image: "/pickle-cave.png",
+  },
+  {
+    title: "He[art] 'n Crumbs",
+    description:
+      "A cookie ordering and admin dashboard app for a home-based bakery — dynamic Firestore-backed catalog, real-time order notifications, sales reporting with PDF/Excel export.",
+    tags: ["react", "firebase", "tailwind"],
+    sourceUrl: "https://github.com/Quichoo/heart-n-crumbs",
+    demoUrl: "https://heart-in-crumbles.web.app/",
+    image: "/heart-n-crumbs.png",
+  },
+  {
+    title: "Fitness AI",
+    description:
+      "An AI-integrated fitness companion — Django REST backend with Supabase, an AI coach layer for workout guidance, and a React/TypeScript frontend deployed across Render and Vercel.",
+    tags: ["react", "typescript", "django", "supabase"],
+    sourceUrl: "https://github.com/Quichoo/fitness-ai",
+    demoUrl: "https://fitness-ai-sepia.vercel.app/",
+    image: "/fitness-ai.png",
+  },
+];
+
+export default function FeaturedWork() {
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const cards = sectionRef.current.querySelectorAll(".project-reveal");
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        cards,
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          stagger: 0.15,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 75%",
+          },
+        },
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <section id="projects" ref={sectionRef} className="py-16 lg:py-24 px-2">
+      <p
+        className="font-mono text-xs tracking-widest uppercase mb-2.5"
+        style={{ color: "var(--color-green)" }}
+      >
+        selected work
+      </p>
+      <h2 className="font-display font-semibold text-2xl md:text-3xl xl:text-4xl mb-6">
+        Featured projects
+      </h2>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        {PROJECTS.map((project) => (
+          <div key={project.title} className="project-reveal">
+            <ProjectCard {...project} />
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
