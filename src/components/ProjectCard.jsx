@@ -47,7 +47,7 @@ export default function ProjectCard({
     >
       <GlassCard>
         <div
-          className="h-[250px] rounded-xl mb-4.5 overflow-hidden flex items-center justify-center font-mono text-xs"
+          className="h-[200px] md:h-[220px] rounded-xl mb-3.5 overflow-hidden flex items-center justify-center font-mono text-xs"
           style={{
             background:
               "linear-gradient(135deg, rgba(53,212,136,0.12), rgba(53,212,136,0.02))",
@@ -66,8 +66,8 @@ export default function ProjectCard({
           )}
         </div>
 
-        <div className="flex items-center gap-2 mb-2">
-          <h3 className="font-display font-semibold text-lg xl:text-xl">
+        <div className="flex items-center gap-2 mb-1.5">
+          <h3 className="font-display font-semibold text-base md:text-lg">
             {title}
           </h3>
           {isAI && (
@@ -84,17 +84,17 @@ export default function ProjectCard({
           )}
         </div>
         <p
-          className="text-sm xl:text-base leading-relaxed mb-4"
+          className="text-xs md:text-sm leading-relaxed mb-3"
           style={{ color: "var(--text-secondary)" }}
         >
           {description}
         </p>
 
-        <div className="flex flex-wrap gap-2 mb-4.5">
+        <div className="flex flex-wrap gap-1.5 mb-3.5">
           {tags.map((tag) => (
             <span
               key={tag}
-              className="font-mono text-xs px-2.5 py-1 rounded-md"
+              className="font-mono text-[11px] px-2 py-0.5 rounded-md"
               style={{
                 background: "rgba(255,255,255,0.04)",
                 border: "1px solid var(--glass-border)",
@@ -106,13 +106,13 @@ export default function ProjectCard({
           ))}
         </div>
 
-        <div className="flex gap-4">
+        <div className="flex gap-3">
           {sourceUrl && (
             <a
               href={sourceUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="no-underline text-sm font-medium"
+              className="no-underline text-xs md:text-sm font-medium"
               style={{ color: "var(--text-primary)" }}
             >
               source ↗
@@ -123,7 +123,7 @@ export default function ProjectCard({
               href={demoUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="no-underline text-sm font-medium"
+              className="no-underline text-xs md:text-sm font-medium"
               style={{ color: "var(--text-primary)" }}
             >
               live demo ↗

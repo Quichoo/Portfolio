@@ -44,7 +44,7 @@ export default function Hero() {
           available for select projects
         </p>
 
-        <h1 className="font-display font-semibold leading-tight tracking-tight text-5xl md:text-6xl lg:text-7xl xl:text-8xl mt-4 mb-3.5">
+        <h1 className="font-display font-semibold leading-tight tracking-tight text-4xl md:text-5xl lg:text-6xl xl:text-7xl mt-3 mb-3">
           Hi, I'm Brian —
           <br />I turn{" "}
           <span
@@ -62,7 +62,7 @@ export default function Hero() {
         </h1>
 
         <p
-          className="max-w-3xl text-base md:text-lg lg:text-xl xl:text-2xl leading-relaxed"
+          className="max-w-3xl text-sm md:text-base lg:text-lg xl:text-xl leading-relaxed"
           style={{ color: "var(--text-secondary)" }}
         >
           I'm a web developer focused on building clean, responsive, and
@@ -71,10 +71,10 @@ export default function Hero() {
           technologies.
         </p>
 
-        <div className="flex gap-3 mt-8">
+        <div className="flex gap-3 mt-6">
           <a
             href="#projects"
-            className="no-underline inline-flex items-center gap-2 text-sm md:text-base xl:text-lg font-medium px-5.5 py-3 md:px-7 md:py-3.5 rounded-xl transition-transform hover:-translate-y-0.5"
+            className="no-underline inline-flex items-center gap-2 text-sm font-medium px-5 py-2.5 md:px-6 md:py-3 rounded-xl transition-transform hover:-translate-y-0.5"
             style={{
               background: "var(--color-green)",
               color: "#06120C",
@@ -85,7 +85,7 @@ export default function Hero() {
           </a>
           <a
             href="#contact"
-            className="no-underline text-sm md:text-base xl:text-lg font-medium px-5.5 py-3 md:px-7 md:py-3.5 rounded-xl transition-colors"
+            className="no-underline text-sm font-medium px-5 py-2.5 md:px-6 md:py-3 rounded-xl transition-colors"
             style={{
               background: "var(--glass-fill)",
               backdropFilter: "blur(var(--glass-blur)) saturate(180%)",

@@ -1,7 +1,7 @@
 export default function GlassCard({ children, className = "", hover = true }) {
   return (
     <div
-      className={`rounded-[18px] p-6 transition-all duration-300 ${hover ? "hover:-translate-y-1" : ""} ${className}`}
+      className={`rounded-[18px] p-5 transition-all duration-300 ${hover ? "hover:-translate-y-1" : ""} ${className}`}
       style={{
         background: "var(--glass-fill)",
         backdropFilter: "blur(var(--glass-blur-strong)) saturate(180%)",

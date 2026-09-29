@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Home, User, Code2, Monitor, Mail, Moon, Sun } from "lucide-react";
+import { Home, User, Code2, Monitor, Mail, Moon, Sun, ChevronLeft, ChevronRight } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { useTheme } from "../context/ThemeContext";
 
@@ -11,7 +11,7 @@ const NAV_ITEMS = [
   { id: "contact", label: "contact", Icon: Mail },
 ];
 
-export default function Navigation() {
+export default function Navigation({ collapsed = false, onToggle }) {
   const { theme, toggle } = useTheme();
   const [activeId, setActiveId] = useState("home");
 
@@ -65,7 +65,11 @@ export default function Navigation() {
     <>
       {/* ---------- DESKTOP: floating glass sidebar ---------- */}
       <aside
-        className="hidden md:block w-[220px] lg:w-[260px] xl:w-[280px] shrink-0 h-fit sticky top-7 rounded-3xl p-4 lg:p-5"
+        className={`hidden md:block shrink-0 h-fit sticky top-5 rounded-2xl transition-all duration-300 ${
+          collapsed
+            ? "w-[72px] p-3"
+            : "w-[180px] lg:w-[210px] xl:w-[230px] p-3 lg:p-4"
+        }`}
         style={{
           background: "var(--glass-fill)",
           backdropFilter: "blur(var(--glass-blur-strong)) saturate(180%)",
@@ -76,29 +80,48 @@ export default function Navigation() {
         }}
       >
         <div
-          className="flex items-center gap-2.5 px-2 pb-4 mb-3"
+          className="flex items-center justify-between px-2 pb-3 mb-2"
           style={{ borderBottom: "1px solid var(--glass-border)" }}
         >
-          <div
-            className="w-10 h-10 rounded-lg flex items-center justify-center"
-            style={{ background: "#FFFFFF" }}
+          {!collapsed && (
+            <div className="flex items-center gap-2">
+              <div
+                className="w-8 h-8 rounded-lg flex items-center justify-center"
+                style={{ background: "#FFFFFF" }}
+              >
+                <img
+                  src="/Logo.png"
+                  alt="Brian logo"
+                  className="w-4 h-4 object-contain"
+                />
+              </div>
+              <span
+                className="font-mono text-xs lg:text-base"
+                style={{ color: "var(--text-primary)", whiteSpace: "nowrap" }}
+              >
+                brian.dev
+              </span>
+            </div>
+          )}
+          <button
+            onClick={() => onToggle(!collapsed)}
+            className="w-7 h-7 rounded-lg flex items-center justify-center transition-colors flex-shrink-0"
+            style={{
+              border: "1px solid var(--glass-border)",
+              color: "var(--text-secondary)",
+              background: "var(--glass-fill)",
+            }}
+            aria-label={collapsed ? "Expand navigation" : "Collapse navigation"}
           >
-            <img
-              src="/Logo.png"
-              alt="Brian logo"
-              className="w-5 h-5 object-contain"
-            />
-          </div>
-
-          <span
-            className="font-mono text-sm lg:text-xl"
-            style={{ color: "var(--text-primary)" }}
-          >
-            brian.dev
-          </span>
+            {collapsed ? (
+              <ChevronRight size={14} strokeWidth={2} />
+            ) : (
+              <ChevronLeft size={14} strokeWidth={2} />
+            )}
+          </button>
         </div>
 
-        <nav className="flex flex-col gap-1">
+        <nav className="flex flex-col gap-0.5">
           {NAV_ITEMS.map(({ id, label, Icon }) => {
             const active = id === activeId;
 
@@ -107,7 +130,9 @@ export default function Navigation() {
                 key={id}
                 href={"#" + id}
                 onClick={handleNavClick(id)}
-                className="no-underline flex items-center gap-3 px-3 py-2.5 lg:py-3 rounded-xl text-sm lg:text-xl font-mono transition-colors"
+                className={`no-underline flex items-center gap-2 px-2.5 py-2 lg:py-2.5 rounded-lg text-xs lg:text-sm font-mono transition-colors ${
+                  collapsed ? "justify-center" : ""
+                }`}
                 style={{
                   color: active
                     ? "var(--text-primary)"
@@ -119,12 +144,15 @@ export default function Navigation() {
                     ? "1px solid var(--glass-border-hover)"
                     : "1px solid transparent",
                 }}
+                title={collapsed ? label : undefined}
               >
-                <Icon size={18} strokeWidth={1.8} />
+                <Icon size={16} strokeWidth={1.8} className="flex-shrink-0" />
 
-                <span>{label}</span>
+                {!collapsed && (
+                  <span className="truncate">{label}</span>
+                )}
 
-                {active && (
+                {!collapsed && active && (
                   <span
                     className="ml-auto relative w-1.5 h-1.5 rounded-full"
                     style={{ background: "var(--color-green)" }}
@@ -142,58 +170,60 @@ export default function Navigation() {
           })}
         </nav>
 
-        <div
-          className="flex items-center gap-2.5 pt-4 mt-3"
-          style={{
-            borderTop: "1px solid var(--glass-border)",
-          }}
-        >
-          <a
-            href="https://github.com/Quichoo"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-8 h-8 rounded-lg flex items-center justify-center transition-colors"
+        {!collapsed && (
+          <div
+            className="flex items-center gap-2 pt-3 mt-2"
             style={{
-              border: "1px solid var(--glass-border)",
-              color: "var(--text-secondary)",
+              borderTop: "1px solid var(--glass-border)",
             }}
           >
-            <FaGithub size={14} />
-          </a>
+            <a
+              href="https://github.com/Quichoo"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-7 h-7 rounded-lg flex items-center justify-center transition-colors"
+              style={{
+                border: "1px solid var(--glass-border)",
+                color: "var(--text-secondary)",
+              }}
+            >
+              <FaGithub size={13} />
+            </a>
 
-          <a
-            href="https://www.linkedin.com/in/quian/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-8 h-8 rounded-lg flex items-center justify-center transition-colors"
-            style={{
-              border: "1px solid var(--glass-border)",
-              color: "var(--text-secondary)",
-            }}
-          >
-            <FaLinkedin size={14} />
-          </a>
+            <a
+              href="https://www.linkedin.com/in/quian/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-7 h-7 rounded-lg flex items-center justify-center transition-colors"
+              style={{
+                border: "1px solid var(--glass-border)",
+                color: "var(--text-secondary)",
+              }}
+            >
+              <FaLinkedin size={13} />
+            </a>
 
-          <button
-            onClick={toggle}
-            className="ml-auto w-8 h-8 rounded-lg flex items-center justify-center transition-colors"
-            style={{
-              border: "1px solid var(--glass-border)",
-              color: "var(--text-secondary)",
-            }}
-          >
-            {theme === "dark" ? (
-              <Moon size={14} strokeWidth={1.8} />
-            ) : (
-              <Sun size={14} strokeWidth={1.8} />
-            )}
-          </button>
-        </div>
+            <button
+              onClick={toggle}
+              className="ml-auto w-7 h-7 rounded-lg flex items-center justify-center transition-colors"
+              style={{
+                border: "1px solid var(--glass-border)",
+                color: "var(--text-secondary)",
+              }}
+            >
+              {theme === "dark" ? (
+                <Moon size={13} strokeWidth={1.8} />
+              ) : (
+                <Sun size={13} strokeWidth={1.8} />
+              )}
+            </button>
+          </div>
+        )}
       </aside>
 
       {/* ---------- MOBILE: fixed glass bottom nav ---------- */}
       <nav
-        className="md:hidden fixed bottom-4 left-4 right-4 z-50 flex items-center justify-around rounded-2xl px-3 py-2.5"
+        className="md:hidden fixed bottom-3 left-3 right-3 z-50 flex items-center justify-around rounded-xl px-2.5 py-2"
         style={{
           background: "var(--glass-fill-strong)",
           backdropFilter: "blur(var(--glass-blur-strong)) saturate(180%)",
@@ -211,28 +241,28 @@ export default function Navigation() {
               key={id}
               href={"#" + id}
               onClick={handleNavClick(id)}
-              className="no-underline flex flex-col items-center justify-center w-10 h-10 rounded-xl transition-colors"
+              className="no-underline flex flex-col items-center justify-center w-9 h-9 rounded-lg transition-colors"
               style={{
                 color: active ? "var(--color-green)" : "var(--text-secondary)",
                 background: active ? "var(--color-green-glow)" : "transparent",
               }}
             >
-              <Icon size={20} strokeWidth={1.8} />
+              <Icon size={18} strokeWidth={1.8} />
             </a>
           );
         })}
 
         <button
           onClick={toggle}
-          className="flex items-center justify-center w-10 h-10 rounded-xl transition-colors"
+          className="flex items-center justify-center w-9 h-9 rounded-lg transition-colors"
           style={{
             color: "var(--text-secondary)",
           }}
         >
           {theme === "dark" ? (
-            <Moon size={18} strokeWidth={1.8} />
+            <Moon size={16} strokeWidth={1.8} />
           ) : (
-            <Sun size={18} strokeWidth={1.8} />
+            <Sun size={16} strokeWidth={1.8} />
           )}
         </button>
       </nav>

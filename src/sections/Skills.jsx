@@ -69,23 +69,25 @@ export default function Skills() {
   }, []);
 
   return (
-    <section id="skills" ref={sectionRef} className="py-16 lg:py-24 px-2">
-      <p
-        className="font-mono text-xs tracking-widest uppercase mb-2.5"
-        style={{ color: "var(--color-green)" }}
-      >
-        capabilities
-      </p>
-      <h2 className="font-display font-semibold text-2xl md:text-3xl xl:text-4xl mb-6">
-        Skills
-      </h2>
+    <section id="skills" ref={sectionRef} className="py-12 lg:py-16 px-4 md:px-8">
+      <div className="mx-auto max-w-[900px]">
+        <p
+          className="font-mono text-xs tracking-widest uppercase mb-2"
+          style={{ color: "var(--color-green)" }}
+        >
+          capabilities
+        </p>
+        <h2 className="font-display font-semibold text-xl md:text-2xl xl:text-3xl mb-4">
+          Skills
+        </h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-        {SKILL_GROUPS.map((group) => (
-          <div key={group.category} className="skill-reveal">
-            <SkillCard category={group.category} skills={group.skills} />
-          </div>
-        ))}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {SKILL_GROUPS.map((group) => (
+            <div key={group.category} className="skill-reveal">
+              <SkillCard category={group.category} skills={group.skills} />
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

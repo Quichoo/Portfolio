@@ -86,23 +86,25 @@ export default function FeaturedWork() {
   }, []);
 
   return (
-    <section id="projects" ref={sectionRef} className="py-16 lg:py-24 px-2">
-      <p
-        className="font-mono text-xs tracking-widest uppercase mb-2.5"
-        style={{ color: "var(--color-green)" }}
-      >
-        selected work
-      </p>
-      <h2 className="font-display font-semibold text-2xl md:text-3xl xl:text-4xl mb-6">
-        Featured projects
-      </h2>
+    <section id="projects" ref={sectionRef} className="py-12 lg:py-16 px-4 md:px-8">
+      <div className="mx-auto max-w-[900px]">
+        <p
+          className="font-mono text-xs tracking-widest uppercase mb-2"
+          style={{ color: "var(--color-green)" }}
+        >
+          selected work
+        </p>
+        <h2 className="font-display font-semibold text-xl md:text-2xl xl:text-3xl mb-4">
+          Featured projects
+        </h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-        {PROJECTS.map((project) => (
-          <div key={project.title} className="project-reveal">
-            <ProjectCard {...project} />
-          </div>
-        ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {PROJECTS.map((project) => (
+            <div key={project.title} className="project-reveal">
+              <ProjectCard {...project} />
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
