@@ -1,29 +1,30 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import GlassCard from "../components/GlassCard";
 import ProjectCard from "../components/ProjectCard";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const PROJECTS = [
   {
-    title: "Pickle Cave",
+    title: "Chess Openings Coach",
     description:
-      "A full-stack booking system for an indoor pickleball venue — live availability, contiguity-checked reservations, real-time admin notifications, and a full admin panel, deployed and running for an actual business.",
-    tags: ["next.js", "typescript", "supabase", "mui"],
-    sourceUrl: "https://github.com/Quichoo/pickle-cave",
-    demoUrl: "https://pickle-cave-blush.vercel.app/",
-    image: "/pickle-cave.png",
+      "An AI-powered chess openings coach — real-time opening analysis, personalized training plans, and interactive lessons powered by chess engines and LLMs. Built with React, TypeScript, Vite, and Groq API.",
+    tags: ["typescript", "react", "vite", "chess.js", "react-chessboard", "eve", "groq api"],
+    sourceUrl: "https://github.com/Quichoo/chess-coach",
+    demoUrl: "https://chess-coach-frontend-six.vercel.app/",
+    image: "/Chess-coach-ai.png",
+    isAI: true,
   },
   {
-    title: "He[art] 'n Crumbs",
+    title: "Resumator V2",
     description:
-      "A cookie ordering and admin dashboard app for a home-based bakery — dynamic Firestore-backed catalog, real-time order notifications, sales reporting with PDF/Excel export.",
-    tags: ["react", "firebase", "tailwind"],
-    sourceUrl: "https://github.com/Quichoo/heart-n-crumbs",
-    demoUrl: "https://heart-in-crumbles.web.app/",
-    image: "/heart-n-crumbs.png",
+      "AI-driven resume builder — generates tailored resumes and cover letters from job descriptions using LLMs, with ATS optimization, real-time preview, and export to PDF. Built with Next.js, TypeScript, Mantine, PostgreSQL, Neon, Drizzle ORM, Better Auth, and Eve.",
+    tags: ["typescript", "next.js", "react", "mantine", "postgresql", "neon", "drizzle orm", "better auth", "eve"],
+    sourceUrl: "https://github.com/Quichoo/ResumatorV2",
+    demoUrl: "https://resumator-v2.vercel.app/sign-in",
+    image: "/Resumator.png",
+    isAI: true,
   },
   {
     title: "Fitness AI",
@@ -33,6 +34,27 @@ const PROJECTS = [
     sourceUrl: "https://github.com/Quichoo/fitness-ai",
     demoUrl: "https://fitness-ai-sepia.vercel.app/",
     image: "/fitness-ai.png",
+    isAI: true,
+  },
+  {
+    title: "Pickle Cave",
+    description:
+      "A full-stack booking system for an indoor pickleball venue — live availability, contiguity-checked reservations, real-time admin notifications, and a full admin panel, deployed and running for an actual business.",
+    tags: ["next.js", "typescript", "supabase", "mui"],
+    sourceUrl: "https://github.com/Quichoo/pickle-cave",
+    demoUrl: "https://pickle-cave-blush.vercel.app/",
+    image: "/pickle-cave.png",
+    isAI: false,
+  },
+  {
+    title: "He[art] 'n Crumbs",
+    description:
+      "A cookie ordering and admin dashboard app for a home-based bakery — dynamic Firestore-backed catalog, real-time order notifications, sales reporting with PDF/Excel export.",
+    tags: ["react", "firebase", "tailwind"],
+    sourceUrl: "https://github.com/Quichoo/heart-n-crumbs",
+    demoUrl: "https://heart-in-crumbles.web.app/",
+    image: "/heart-n-crumbs.png",
+    isAI: false,
   },
 ];
 

@@ -9,6 +9,7 @@ export default function ProjectCard({
   sourceUrl,
   demoUrl,
   image,
+  isAI = false,
 }) {
   const cardRef = useRef(null);
 
@@ -65,9 +66,23 @@ export default function ProjectCard({
           )}
         </div>
 
-        <h3 className="font-display font-semibold text-lg xl:text-xl mb-2">
-          {title}
-        </h3>
+        <div className="flex items-center gap-2 mb-2">
+          <h3 className="font-display font-semibold text-lg xl:text-xl">
+            {title}
+          </h3>
+          {isAI && (
+            <span
+              className="font-mono text-[10px] uppercase tracking-wider px-2 py-0.5 rounded"
+              style={{
+                background: "var(--color-green-glow)",
+                border: "1px solid var(--color-green)",
+                color: "var(--color-green)",
+              }}
+            >
+              AI
+            </span>
+          )}
+        </div>
         <p
           className="text-sm xl:text-base leading-relaxed mb-4"
           style={{ color: "var(--text-secondary)" }}
